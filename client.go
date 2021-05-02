@@ -227,10 +227,13 @@ type Invoice struct {
 	Buyer Buyer `json:"buyer"`
 }
 
-type API interface {
+type Client interface {
 	PairClient(code string) *PairClientResponse
 	GetRates(currencyPairs []string, storeID string) *[]Rate
 	CreateInvoice(inv *InvoiceReq) *Invoice
 	GetInvoice(invoiceId string, token string) *Invoice
 	GetInvoices(args IncoiceArgs, token string) *[]Invoice
+}
+
+type Cryptography interface {
 }
