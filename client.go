@@ -1,11 +1,17 @@
 package ptcpayclient
 
 import (
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"log"
+	"math/big"
 	"sync"
 	"time"
 
 	px "github.com/Ulbora/GoProxy"
 	lg "github.com/Ulbora/Level_Logger"
+	"github.com/ethereum/go-ethereum/crypto/secp256k1"
 )
 
 // go mod init github.com/Ulbora/BTCPayClient
@@ -235,5 +241,40 @@ type Client interface {
 	GetInvoices(args IncoiceArgs, token string) *[]Invoice
 }
 
-type Cryptography interface {
+type Crypto interface {
+	GenerateKeyPair() *ecdsa.PrivateKey
+	LoadKeyPair(privateKey string) *ecdsa.PrivateKey
+	GetSinFromKey()
+	Sign(hash []byte, kp *ecdsa.PrivateKey) []byte
+}
+
+type Cryptography struct {
+}
+
+func (c *Cryptography) GenerateKeyPair() *ecdsa.PrivateKey {
+	kp, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	//priva, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	//privb, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+
+	//puba := priva.PublicKey
+	//pubb := privb.PublicKey
+	//prvk :=
+	return kp
+}
+
+func (c *Cryptography) LoadKeyPair(privateKey string) *ecdsa.PrivateKey {
+	var e ecdsa.PrivateKey
+	e.D, _ = new(big.Int).SetString(privateKey, 16)
+	e.PublicKey.Curve = secp256k1.S256()
+	e.PublicKey.X, e.PublicKey.Y = e.PublicKey.Curve.ScalarBaseMult(e.D.Bytes())
+	return &e
+}
+
+func (c *Cryptography) Sign(hash []byte, kp *ecdsa.PrivateKey) []byte {
+	sig, err := ecdsa.SignASN1(rand.Reader, kp, hash[:])
+	if err != nil {
+		log.Println(err)
+	}
+	return sig
+
 }
