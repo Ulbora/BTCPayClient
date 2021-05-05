@@ -1,0 +1,9 @@
+mode: set
+github.com/Ulbora/BTCPayClient/client.go:19.49,22.22 3 0
+github.com/Ulbora/BTCPayClient/client.go:25.2,25.24 1 0
+github.com/Ulbora/BTCPayClient/client.go:22.22,24.3 1 0
+github.com/Ulbora/BTCPayClient/crypto.go:22.37,24.2 1 1
+github.com/Ulbora/BTCPayClient/crypto.go:26.60,29.2 2 1
+github.com/Ulbora/BTCPayClient/crypto.go:31.73,37.2 5 0
+github.com/Ulbora/BTCPayClient/crypto.go:39.67,43.2 2 0
+github.com/Ulbora/BTCPayClient/crypto.go:45.80,49.2 3 1
