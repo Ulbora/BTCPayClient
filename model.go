@@ -1,12 +1,17 @@
 package ptcpayclient
 
+// Copyright (c) 2018 Ulbora Labs LLC
+// Copyright (c) 2018 Ken Williamson
+
 import "time"
 
+//Payload Payload
 type Payload struct {
 	ClientID    string `json:"id"`
 	PairingCode string `json:"pairingCode"`
 }
 
+//Rate Rate
 type Rate struct {
 	Name         string  `json:"name"`
 	CryptoCode   string  `json:"cryptoCode"`
@@ -15,10 +20,12 @@ type Rate struct {
 	Rate         float64 `json:"rate"`
 }
 
+//TranCurStatus TranCurStatus
 type TranCurStatus struct {
 	Enabled bool
 }
 
+//Buyer Buyer
 type Buyer struct {
 	Name       string `json:"name"`
 	Address1   string `json:"address1"`
@@ -35,6 +42,7 @@ type Buyer struct {
 	Email      string `json:"email"`
 }
 
+//BuyerFields BuyerFields
 type BuyerFields struct {
 	BuyerName     string `json:"buyerName"`
 	BuyerAddress1 string `json:"buyerAddress1"`
@@ -48,6 +56,7 @@ type BuyerFields struct {
 	BuyerEmail    string `json:"buyerEmail"`
 }
 
+//CryptoCode CryptoCode
 type CryptoCode struct {
 	CryptoCode  string    `json:"cryptoCode"`
 	PaymentType string    `json:"paymentType"`
@@ -58,7 +67,7 @@ type CryptoCode struct {
 	Due         string    `json:"due"`
 	PaymentUrls []string  `json:"paymentUrls"`
 	Address     string    `json:"address"`
-	Url         string    `json:"url"`
+	URL         string    `json:"url"`
 	TotalDue    string    `json:"totalDue"`
 	NetworkFee  string    `json:"networkFee"`
 	TxCount     int64     `json:"txCount"`
@@ -66,6 +75,7 @@ type CryptoCode struct {
 	Payments    []string  `json:"payments"`
 }
 
+//PayURLs PayURLs
 type PayURLs struct {
 	BIP21  string `json:"BIP21"`
 	BIP72  string `json:"BIP72"`
@@ -74,10 +84,12 @@ type PayURLs struct {
 	BOLT11 string `json:"BOLT11"`
 }
 
+//InvFlags InvFlags
 type InvFlags struct {
 	Refundable bool `json:"refundable"`
 }
 
+//InvoiceReq InvoiceReq
 type InvoiceReq struct {
 	//Guid                           string                   `json:"guid"`
 	//ID                             string                   `json:"id"`
@@ -107,7 +119,7 @@ type InvoiceReq struct {
 	// PaymentCodes                   string                   `json:"paymentCodes"`
 	Currency                       string                   `json:"currency"`
 	Price                          float64                  `json:"price"`
-	OrderId                        string                   `json:"orderId"`
+	OrderID                        string                   `json:"orderId"`
 	ExpirationTime                 time.Time                `json:"expirationTime"`
 	ItemDesc                       string                   `json:"itemDesc"`
 	ItemCode                       string                   `json:"itemCode"`
@@ -129,9 +141,10 @@ type InvoiceReq struct {
 	//Buyer                          Buyer                    `json:"buyer"`
 }
 
+//IncoiceArgs IncoiceArgs
 type IncoiceArgs struct {
 	Status    string `json:"status"`
-	OrderId   string `json:"orderId"`
+	OrderID   string `json:"orderId"`
 	ItemCode  string `json:"itemCode"`
 	DateStart string `json:"dateStart"`
 	DateEnd   string `json:"dateEnd"`
@@ -139,8 +152,9 @@ type IncoiceArgs struct {
 	Offset    string `json:"offset"`
 }
 
+//Invoice Invoice
 type Invoice struct {
-	Guid                        string       `json:"guid"`
+	GUID                        string       `json:"guid"`
 	ID                          string       `json:"id"`
 	URL                         string       `json:"url"`
 	BtcPrice                    string       `json:"btcPrice"`
@@ -168,7 +182,7 @@ type Invoice struct {
 	PaymentCodes                string       `json:"paymentCodes"`
 	Currency                    string       `json:"currency"`
 	Price                       float64      `json:"price"`
-	OrderId                     string       `json:"orderId"`
+	OrderID                     string       `json:"orderId"`
 	ExpirationTime              time.Time    `json:"expirationTime"`
 	ItemDesc                    string       `json:"itemDesc"`
 	ItemCode                    string       `json:"itemCode"`

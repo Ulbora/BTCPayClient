@@ -1,5 +1,8 @@
 package ptcpayclient
 
+// Copyright (c) 2018 Ulbora Labs LLC 
+// Copyright (c) 2018 Ken Williamson
+
 import (
 	"bytes"
 	"crypto/ecdsa"
@@ -9,6 +12,7 @@ import (
 	lg "github.com/Ulbora/Level_Logger"
 )
 
+//BTCPayClient BTCPayClient
 type BTCPayClient struct {
 	clientID  string
 	userAgent string
@@ -19,6 +23,7 @@ type BTCPayClient struct {
 	headers   Headers
 }
 
+//New New
 func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey) Client {
 	var l lg.Logger
 	l.LogLevel = lg.AllLevel

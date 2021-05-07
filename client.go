@@ -1,5 +1,8 @@
 package ptcpayclient
 
+// Copyright (c) 2018 Ulbora Labs LLC
+// Copyright (c) 2018 Ken Williamson
+
 const (
 	userAgent = "Ulbora btyPayClient"
 )
@@ -22,10 +25,12 @@ func (h *Headers) Set(key string, value string) {
 	h.headers[key] = value
 }
 
+//PairClientResponse PairClientResponse
 type PairClientResponse struct {
 	Merchant string `json:"merchant"`
 }
 
+//Client Client
 type Client interface {
 	//Token(sin string)
 	PairClient(code string) *PairClientResponse

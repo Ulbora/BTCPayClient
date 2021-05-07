@@ -18,6 +18,7 @@ const (
 	pubKeyBytesLenCompressed      = 33
 )
 
+//Crypto Crypto
 type Crypto interface {
 	GenerateKeyPair(ec elliptic.Curve) *ecdsa.PrivateKey
 	LoadKeyPair(privateKey string, ec elliptic.Curve) *ecdsa.PrivateKey
@@ -25,19 +26,23 @@ type Crypto interface {
 	Sign(hash []byte, kp *ecdsa.PrivateKey) ([]byte, error)
 }
 
+//Cryptography Cryptography
 type Cryptography struct {
 }
 
+//New New
 func (c *Cryptography) New() Crypto {
 	return c
 }
 
+//GenerateKeyPair GenerateKeyPair
 func (c *Cryptography) GenerateKeyPair(ec elliptic.Curve) *ecdsa.PrivateKey {
 	//A public private key pair is created using elliptic curve secp256k1
 	kp, _ := ecdsa.GenerateKey(ec, rand.Reader)
 	return kp
 }
 
+//LoadKeyPair LoadKeyPair
 func (c *Cryptography) LoadKeyPair(privateKey string, ec elliptic.Curve) *ecdsa.PrivateKey {
 	//A public private key pair is created using elliptic curve secp256k1
 	var e ecdsa.PrivateKey
@@ -47,6 +52,7 @@ func (c *Cryptography) LoadKeyPair(privateKey string, ec elliptic.Curve) *ecdsa.
 	return &e
 }
 
+//GetSinFromKey GetSinFromKey
 func (c *Cryptography) GetSinFromKey(kp *ecdsa.PrivateKey) string {
 	//A public private key pair is created using elliptic curve secp256k1
 	var sin string
@@ -67,6 +73,7 @@ func (c *Cryptography) GetSinFromKey(kp *ecdsa.PrivateKey) string {
 	return sin
 }
 
+//Sign Sign
 func (c *Cryptography) Sign(hash []byte, kp *ecdsa.PrivateKey) ([]byte, error) {
 	//A public private key pair is created using elliptic curve secp256k1
 	ehash := sha256.Sum256(hash)

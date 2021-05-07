@@ -40,5 +40,5 @@ func TestBTCPayClient_PairClient(t *testing.T) {
 
 	fmt.Println("ps: ", ps)
 
-	t.Fail()
+	//t.Fail()
 }
