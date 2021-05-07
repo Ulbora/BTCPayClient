@@ -13,13 +13,13 @@ type BTCPayClient struct {
 	clientID  string
 	userAgent string
 	host      string
-	kp        ecdsa.PrivateKey
+	kp        *ecdsa.PrivateKey
 	proxy     px.Proxy
 	log       *lg.Logger
 	headers   Headers
 }
 
-func (a *BTCPayClient) New(host string, kp ecdsa.PrivateKey) Client {
+func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey) Client {
 	var l lg.Logger
 	l.LogLevel = lg.AllLevel
 	a.log = &l
@@ -32,7 +32,7 @@ func (a *BTCPayClient) New(host string, kp ecdsa.PrivateKey) Client {
 	var cryt Cryptography
 	c := cryt.New()
 
-	a.clientID = c.GetSinFromKey(&a.kp)
+	a.clientID = c.GetSinFromKey(a.kp)
 	a.userAgent = userAgent
 	return a
 }
@@ -40,6 +40,16 @@ func (a *BTCPayClient) New(host string, kp ecdsa.PrivateKey) Client {
 //OverrideProxy OverrideProxy
 func (a *BTCPayClient) OverrideProxy(proxy px.Proxy) {
 	a.proxy = proxy
+}
+
+//SetHeader SetHeader
+func (a *BTCPayClient) SetHeader(head Headers) {
+	a.headers = head
+}
+
+//SetLogLevel SetLogLevel
+func (a *BTCPayClient) SetLogLevel(level int) {
+	a.log.LogLevel = level
 }
 
 func (a *BTCPayClient) buildRequest(method string, url string, headers Headers, aJSON []byte) *http.Request {

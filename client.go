@@ -27,7 +27,8 @@ type PairClientResponse struct {
 }
 
 type Client interface {
-	//PairClient(code string) *PairClientResponse
+	//Token(sin string)
+	PairClient(code string) *PairClientResponse
 	//GetRates(currencyPairs []string, storeID string) *[]Rate
 	//CreateInvoice(inv *InvoiceReq) *Invoice
 	//GetInvoice(invoiceId string, token string) *Invoice
