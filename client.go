@@ -30,10 +30,25 @@ type PairClientResponse struct {
 	Merchant string `json:"merchant"`
 }
 
+//TokenRequest TokenRequest
+type TokenRequest struct {
+	ID          string `json:"id"`
+	Facade      string `json:"facade"`
+	Label       string `json:"label"`
+	PairingCode string `json:"pairingCode"`
+}
+
+//TokenResponse TokenResponse
+type TokenResponse struct {
+	Data []TokenData `json:"data"`
+	Code int64       `json:"code"`
+}
+
 //Client Client
 type Client interface {
-	//Token(sin string)
-	PairClient(code string) *PairClientResponse
+	GetClientID() string
+	Token(req *TokenRequest) *TokenResponse
+	PairClient(code string) *TokenResponse
 	//GetRates(currencyPairs []string, storeID string) *[]Rate
 	//CreateInvoice(inv *InvoiceReq) *Invoice
 	//GetInvoice(invoiceId string, token string) *Invoice

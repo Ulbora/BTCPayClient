@@ -5,6 +5,23 @@ package ptcpayclient
 
 import "time"
 
+//Policy Policy
+type Policy struct {
+	Policy string   `json:"policy"`
+	Method string   `json:"method"`
+	Params []string `json:"params"`
+}
+
+//TokenData TokenData
+type TokenData struct {
+	Policies          []Policy `json:"policies"`
+	Token             string   `json:"token"`
+	Facade            string   `json:"facade"`
+	CreateDate        int64    `json:"dateCreated"`
+	PairingExpiration int64    `json:"pairingExpiration"`
+	ParingCode        string   `json:"pairingCode"`
+}
+
 //Payload Payload
 type Payload struct {
 	ClientID    string `json:"id"`

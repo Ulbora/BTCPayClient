@@ -32,6 +32,8 @@ func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey) Client {
 	var p px.GoProxy
 	a.proxy = &p
 
+	a.host = host
+
 	a.kp = kp
 
 	var cryt Cryptography
@@ -61,6 +63,7 @@ func (a *BTCPayClient) buildRequest(method string, url string, headers Headers, 
 
 	var req *http.Request
 	var err error
+	headers.Set("x-accept-version", "2.0.0")
 	if method == http.MethodPost || method == http.MethodPut {
 		headers.Set("Content-Type", "application/json")
 		req, err = http.NewRequest(method, url, bytes.NewBuffer(aJSON))
@@ -75,4 +78,9 @@ func (a *BTCPayClient) buildRequest(method string, url string, headers Headers, 
 		}
 	}
 	return req
+}
+
+//GetClientID GetClientID
+func (a *BTCPayClient) GetClientID() string {
+	return a.clientID
 }
