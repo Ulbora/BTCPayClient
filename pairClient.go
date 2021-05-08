@@ -27,6 +27,7 @@ func (a *BTCPayClient) Token(req *TokenRequest) *TokenResponse {
 		}
 	}
 	a.log.Debug("rtn: ", rtn)
+	a.tokens = &rtn.Data
 	return &rtn
 
 }

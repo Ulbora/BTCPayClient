@@ -209,6 +209,8 @@ func TestBTCPayClient_PairClient(t *testing.T) {
 
 	fmt.Println("presp: ", presp)
 
+	fmt.Println("new client: ", ptc)
+
 	if presp.Code != 200 {
 		t.Fail()
 	}
