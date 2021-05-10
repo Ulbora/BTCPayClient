@@ -42,3 +42,10 @@ func (a *BTCPayClient) PairClient(code string) *TokenResponse {
 	a.log.Debug("PairClient req: ", tkr)
 	return a.Token(&tkr)
 }
+
+//GetPairingCodeRequest GetPairingCodeRequest
+func (a *BTCPayClient) GetPairingCodeRequest(code string) string {
+	var url = a.host + "/api-access-request?pairingCode=" + code
+	a.log.Debug("pair request url: ", url)
+	return url
+}

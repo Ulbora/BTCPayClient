@@ -24,6 +24,7 @@ type Crypto interface {
 	LoadKeyPair(privateKey string, ec elliptic.Curve) *ecdsa.PrivateKey
 	GetSinFromKey(kp *ecdsa.PrivateKey) string
 	Sign(hash []byte, kp *ecdsa.PrivateKey) ([]byte, error)
+	GetPublicKey(kp *ecdsa.PrivateKey) string
 }
 
 //Cryptography Cryptography
@@ -79,6 +80,13 @@ func (c *Cryptography) Sign(hash []byte, kp *ecdsa.PrivateKey) ([]byte, error) {
 	ehash := sha256.Sum256(hash)
 	sig, err := ecdsa.SignASN1(rand.Reader, kp, ehash[:])
 	return sig, err
+}
+
+//GetPublicKey GetPublicKey
+func (c *Cryptography) GetPublicKey(kp *ecdsa.PrivateKey) string {
+	comp := serializeCompressed(kp.PublicKey)
+	key := hex.EncodeToString(comp)
+	return key
 }
 
 func sha256ofHexString(hexa string) string {
