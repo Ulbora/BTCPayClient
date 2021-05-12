@@ -27,7 +27,9 @@ func (a *BTCPayClient) Token(req *TokenRequest) *TokenResponse {
 		}
 	}
 	a.log.Debug("rtn: ", rtn)
-	a.tokens = &rtn.Data
+	if len(rtn.Data) > 0 {
+		a.tokens = rtn.Data[0]
+	}
 	return &rtn
 
 }

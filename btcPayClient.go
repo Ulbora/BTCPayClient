@@ -21,7 +21,8 @@ type BTCPayClient struct {
 	proxy     px.Proxy
 	log       *lg.Logger
 	headers   Headers
-	tokens    *[]TokenData
+	tokens    TokenData
+	crypto    Crypto
 }
 
 //New New

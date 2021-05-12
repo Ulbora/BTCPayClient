@@ -220,13 +220,13 @@ func TestBTCPayClient_PairClient(t *testing.T) {
 }
 
 func TestBTCPayClient_PairClient2(t *testing.T) {
-	//var pkh = "31eb31ecf1a640cd91e0a1105501f36235f8c7d51d67dcf74ccc968d74cb6b25"
+	var pkh = "31eb31ecf1a640cd91e0a1105501f36235f8c7d51d67dcf74ccc968d74cb6b25"
 
 	var cryt Cryptography
 	cc := cryt.New()
 
-	//kp := cc.LoadKeyPair(pkh, btcec.S256())
-	kp := cc.GenerateKeyPair(btcec.S256())
+	kp := cc.LoadKeyPair(pkh, btcec.S256())
+	// kp := cc.GenerateKeyPair(btcec.S256())
 
 	pub := cc.GetPublicKey(kp)
 
@@ -326,5 +326,5 @@ func TestBTCPayClient_PairClient2(t *testing.T) {
 		t.Fail()
 	}
 
-	//t.Fail()
+	t.Fail()
 }
