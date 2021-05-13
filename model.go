@@ -37,6 +37,11 @@ type Rate struct {
 	Rate         float64 `json:"rate"`
 }
 
+//RateResponse RateResponse
+type RateResponse struct {
+	Data []Rate `json:"data"`
+}
+
 //TranCurStatus TranCurStatus
 type TranCurStatus struct {
 	Enabled bool

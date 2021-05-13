@@ -26,7 +26,7 @@ type BTCPayClient struct {
 }
 
 //New New
-func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey) Client {
+func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey, token string) Client {
 	var l lg.Logger
 	l.LogLevel = lg.AllLevel
 	a.log = &l
@@ -39,10 +39,12 @@ func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey) Client {
 	a.kp = kp
 
 	var cryt Cryptography
-	c := cryt.New()
+	a.crypto = &cryt
 
-	a.clientID = c.GetSinFromKey(a.kp)
+	a.clientID = a.crypto.GetSinFromKey(a.kp)
 	a.userAgent = userAgent
+
+	a.tokens.Token = token
 	return a
 }
 

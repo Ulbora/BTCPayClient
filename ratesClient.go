@@ -4,20 +4,14 @@ import (
 	"encoding/hex"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 //GetRates GetRates
-func (a *BTCPayClient) GetRates(currencyPairs []string, storeID string) *[]Rate {
-	var rtn []Rate
-	var args = ""
-	for i, cp := range currencyPairs {
-		if i == 0 {
-			args += cp
-		} else {
-			args += "," + cp
-		}
+func (a *BTCPayClient) GetRates(currencyPairs []string, storeID string) *RateResponse {
+	var rtn RateResponse
+	args := strings.Join(currencyPairs[:], ",")
 
-	}
 	var url = a.host + "/rates?currencyPairs=" + args + "&storeID=" + storeID + "&token=" + a.tokens.Token
 	a.log.Debug("url: ", url)
 	//aJSON, err := json.Marshal(req)

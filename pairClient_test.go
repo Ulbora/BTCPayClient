@@ -56,7 +56,7 @@ func TestBTCPayClient_Token(t *testing.T) {
 	gp.MockDoSuccess1 = true
 	gp.MockRespCode = 200
 
-	c := ptc.New(testBaseURL, kp)
+	c := ptc.New(testBaseURL, kp, "")
 	ptc.SetLogLevel(lg.AllLevel)
 	ptc.OverrideProxy(&gp)
 	var tkr TokenRequest
@@ -109,7 +109,7 @@ func TestBTCPayClient_Token_fail_code(t *testing.T) {
 	gp.MockDoSuccess1 = true
 	gp.MockRespCode = 401
 
-	c := ptc.New(testBaseURL, kp)
+	c := ptc.New(testBaseURL, kp, "")
 	ptc.SetLogLevel(lg.AllLevel)
 	ptc.OverrideProxy(&gp)
 	var tkr TokenRequest
@@ -162,7 +162,7 @@ func TestBTCPayClient_PairClient(t *testing.T) {
 	gp.MockDoSuccess1 = true
 	gp.MockRespCode = 200
 
-	c := ptc.New(testBaseURL, kp)
+	c := ptc.New(testBaseURL, kp, "")
 
 	fmt.Println("new client: ", ptc)
 
@@ -265,7 +265,7 @@ func TestBTCPayClient_PairClient2(t *testing.T) {
 	gp.MockDoSuccess1 = true
 	gp.MockRespCode = 200
 
-	c := ptc.New(testBaseURL, kp)
+	c := ptc.New(testBaseURL, kp, "")
 
 	fmt.Println("new client: ", ptc)
 
@@ -326,5 +326,5 @@ func TestBTCPayClient_PairClient2(t *testing.T) {
 		t.Fail()
 	}
 
-	t.Fail()
+	//t.Fail()
 }
