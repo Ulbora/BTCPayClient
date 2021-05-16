@@ -1,7 +1,9 @@
 package ptcpayclient
 
-// Copyright (c) 2018 Ulbora Labs LLC
-// Copyright (c) 2018 Ken Williamson
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
 
 //Policy Policy
 type Policy struct {
@@ -97,7 +99,7 @@ type CryptoCode struct {
 	NetworkFee  string             `json:"networkFee"`
 	TxCount     int64              `json:"txCount"`
 	CryptoPaid  string             `json:"cryptoPaid"`
-	Payments    []string           `json:"payments"`
+	Payments    []Payment          `json:"payments"`
 }
 
 //PayURLs PayURLs
@@ -139,8 +141,8 @@ type InvoiceReq struct {
 	Buyer                          Buyer                    `json:"buyer"`
 }
 
-//IncoiceArgs IncoiceArgs
-type IncoiceArgs struct {
+//InvoiceArgs InvoiceArgs
+type InvoiceArgs struct {
 	Status    string `json:"status"`
 	OrderID   string `json:"orderId"`
 	ItemCode  string `json:"itemCode"`
@@ -154,6 +156,18 @@ type IncoiceArgs struct {
 type MinerFee struct {
 	SatoshisPerByte float64 `json:"satoshisPerByte"`
 	TotalFee        float64 `json:"totalFee"`
+}
+
+//Payment Payment
+type Payment struct {
+	ID           string  `json:"id"`
+	ReceivedDate string  `json:"receivedDate"`
+	Value        float64 `json:"value"`
+	Fee          float64 `json:"fee"`
+	PaymentType  string  `json:"paymentType"`
+	Confirmed    bool    `json:"confirmed"`
+	Completed    bool    `json:"completed"`
+	Destination  string  `json:"destination"`
 }
 
 //Invoice Invoice
@@ -171,7 +185,7 @@ type Invoice struct {
 	LowFeeDetected              bool                          `json:"lowFeeDetected"`
 	BtcPaid                     string                        `json:"btcPaid"`
 	Rate                        float64                       `json:"rate"`
-	ExceptionStatus             bool                          `json:"exceptionStatus"`
+	ExceptionStatus             interface{}                   `json:"exceptionStatus"`
 	PaymentUrls                 PayURLs                       `json:"paymentUrls"`
 	RefundAddressRequestPending bool                          `json:"refundAddressRequestPending"`
 	BuyerPaidBtcMinerFee        string                        `json:"buyerPaidBtcMinerFee"`
@@ -211,4 +225,9 @@ type Invoice struct {
 //InvoiceResponse InvoiceResponse
 type InvoiceResponse struct {
 	Data Invoice `json:"data"`
+}
+
+//InvoiceListResponse InvoiceListResponse
+type InvoiceListResponse struct {
+	Data []Invoice `json:"data"`
 }

@@ -1,7 +1,9 @@
 package ptcpayclient
 
-// Copyright (c) 2018 Ulbora Labs LLC
-// Copyright (c) 2018 Ken Williamson
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
 
 const (
 	userAgent = "Ulbora btyPayClient"
@@ -52,6 +54,6 @@ type Client interface {
 	GetPairingCodeRequest(code string) string
 	GetRates(currencyPairs []string, storeID string) *RateResponse
 	CreateInvoice(inv *InvoiceReq) *InvoiceResponse
-	//GetInvoice(invoiceId string, token string) *Invoice
-	//GetInvoices(args IncoiceArgs, token string) *[]Invoice
+	GetInvoice(invoiceID string) *InvoiceResponse
+	GetInvoices(args *InvoiceArgs) *InvoiceListResponse
 }

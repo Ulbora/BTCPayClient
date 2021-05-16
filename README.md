@@ -5,10 +5,12 @@
 
 
 
-BTCPay Client 
+BTCPay Server Client 
 ==============
 ## A Golang client for BTCPay Server that is mockable
 
 BTCPay Server is a self-hosted, open-source cryptocurrency payment processor. It's secure, private, censorship-resistant and free. 
 
 This client will be used to add cryptocurrency payments to [Six910](http://www.six910.com) E-Commerce System.
+
+

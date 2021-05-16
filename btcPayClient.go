@@ -1,7 +1,9 @@
 package ptcpayclient
 
-// Copyright (c) 2018 Ulbora Labs LLC
-// Copyright (c) 2018 Ken Williamson
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
 
 import (
 	"bytes"

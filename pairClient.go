@@ -5,8 +5,10 @@ import (
 	"net/http"
 )
 
-// Copyright (c) 2018 Ulbora Labs LLC
-// Copyright (c) 2018 Ken Williamson
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
 
 //Token Token
 func (a *BTCPayClient) Token(req *TokenRequest) *TokenResponse {

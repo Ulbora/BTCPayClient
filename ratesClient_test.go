@@ -13,7 +13,7 @@ import (
 
 const (
 	testStore = "TestStore"
-	testToken = "AEgrxE3CwVAEWixX2gevGR58WuX9yGp9zP3BE6tJBAQHwe"
+	testToken = "AEgrxE3CwVAEWixX2gevGR58WuX9yGp9zP3BE6tJBAQHwq"
 )
 
 func TestBTCPayClient_GetRates(t *testing.T) {
@@ -63,7 +63,7 @@ func TestBTCPayClient_GetRates(t *testing.T) {
 		t.Fail()
 	}
 
-	//t.Fail()
+	// t.Fail()
 
 }
 

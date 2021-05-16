@@ -1,5 +1,10 @@
 package ptcpayclient
 
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
+
 import (
 	"encoding/hex"
 	"encoding/json"
@@ -51,9 +56,112 @@ func (a *BTCPayClient) CreateInvoice(inv *InvoiceReq) *InvoiceResponse {
 		}
 	}
 	a.log.Debug("rtn: ", rtn)
-	// if len(rtn.Data) > 0 {
-	// 	a.tokens = rtn.Data[0]
-	// }
 
+	return &rtn
+}
+
+//GetInvoice GetInvoice
+func (a *BTCPayClient) GetInvoice(invoiceID string) *InvoiceResponse {
+	var rtn InvoiceResponse
+	var url = a.host + "/invoices/" + invoiceID + "?token=" + a.tokens.Token
+	a.log.Debug("url: ", url)
+	var headers Headers
+	urlb := []byte(url)
+	signVal, _ := a.crypto.Sign(urlb, a.kp)
+	headers.Set("x-identity", a.crypto.GetPublicKey(a.kp))
+	headers.Set("x-signature", hex.EncodeToString(signVal))
+	fmt.Println("headers: ", headers)
+	req := a.buildRequest(http.MethodGet, url, headers, nil)
+	suc, stat := a.proxy.Do(req, &rtn) //--------------------
+	// //test------------------------
+	// client := &http.Client{}
+	// resp, err := client.Do(req)
+	// fmt.Println("client err: ", err)
+	// defer resp.Body.Close()
+	// stat := resp.StatusCode
+	// decoder := json.NewDecoder(resp.Body)
+	// bodyBytes, err := ioutil.ReadAll(resp.Body)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// bodyString := string(bodyBytes)
+	// fmt.Println("body: ", bodyString)
+	// error := decoder.Decode(&rtn)
+	// var suc = true
+	// fmt.Println("error: ", error)
+	// //-------------------
+
+	a.log.Debug("suc: ", suc)
+	a.log.Debug("stat: ", stat)
+
+	if !suc || stat != http.StatusOK {
+		a.log.Debug("proxy call failed to : ", url)
+	}
+
+	a.log.Debug("rtn: ", rtn)
+
+	return &rtn
+}
+
+//GetInvoices GetInvoices
+func (a *BTCPayClient) GetInvoices(args *InvoiceArgs) *InvoiceListResponse {
+	var rtn InvoiceListResponse
+	var url = a.host + "/invoices?token=" + a.tokens.Token
+	if args.Status != "" {
+		url += "&status=" + args.Status
+	}
+	if args.DateStart != "" {
+		url += "&dateStart=" + args.DateStart
+	}
+	if args.DateEnd != "" {
+		url += "&dateEnd=" + args.DateEnd
+	}
+	if args.OrderID != "" {
+		url += "&orderId=" + args.OrderID
+	}
+
+	if args.Limit != "" {
+		url += "&limit=" + args.Limit
+	}
+
+	if args.Offset != "" {
+		url += "&offset=" + args.Offset
+	}
+
+	a.log.Debug("url: ", url)
+	var headers Headers
+	urlb := []byte(url)
+	signVal, _ := a.crypto.Sign(urlb, a.kp)
+	headers.Set("x-identity", a.crypto.GetPublicKey(a.kp))
+	headers.Set("x-signature", hex.EncodeToString(signVal))
+	fmt.Println("headers: ", headers)
+	req := a.buildRequest(http.MethodGet, url, headers, nil)
+	suc, stat := a.proxy.Do(req, &rtn) //--------------------
+	// //test------------------------
+	// client := &http.Client{}
+	// resp, err := client.Do(req)
+	// fmt.Println("client err: ", err)
+	// defer resp.Body.Close()
+	// stat := resp.StatusCode
+	// decoder := json.NewDecoder(resp.Body)
+	// bodyBytes, err := ioutil.ReadAll(resp.Body)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// bodyString := string(bodyBytes)
+	// fmt.Println("body: ", bodyString)
+	// error := decoder.Decode(&rtn)
+	// var suc = true
+	// fmt.Println("error: ", error)
+	// //-------------------
+
+	a.log.Debug("suc: ", suc)
+	a.log.Debug("stat: ", stat)
+
+	if !suc || stat != http.StatusOK {
+		a.log.Debug("proxy call failed to : ", url)
+	}
+
+	a.log.Debug("rtn: ", rtn)
 	return &rtn
 }

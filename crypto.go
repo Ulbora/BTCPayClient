@@ -1,5 +1,10 @@
 package ptcpayclient
 
+//***********************************************
+//* Copyright (c) 2021 Ulbora Labs LLC
+//* Copyright (c) 2021 Ken Williamson
+//***********************************************
+
 import (
 	"crypto/ecdsa"
 	"crypto/elliptic"
