@@ -13,7 +13,7 @@ import (
 
 const (
 	testStore = "TestStore"
-	testToken = "GGsauSDZek5nffnHP9oJ6vxSRYKyhcGNN8PjTVX8aL2rwG"
+	testToken = "AEgrxE3CwVAEWixX2gevGR58WuX9yGp9zP3BE6tJBAQHwe"
 )
 
 func TestBTCPayClient_GetRates(t *testing.T) {

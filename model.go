@@ -3,8 +3,6 @@ package ptcpayclient
 // Copyright (c) 2018 Ulbora Labs LLC
 // Copyright (c) 2018 Ken Williamson
 
-import "time"
-
 //Policy Policy
 type Policy struct {
 	Policy string   `json:"policy"`
@@ -44,7 +42,8 @@ type RateResponse struct {
 
 //TranCurStatus TranCurStatus
 type TranCurStatus struct {
-	Enabled bool
+	Enabled bool   `json:"enabled"`
+	Reason  string `json:"reason"`
 }
 
 //Buyer Buyer
@@ -78,23 +77,27 @@ type BuyerFields struct {
 	BuyerEmail    string `json:"buyerEmail"`
 }
 
+//Erate Erate
+type Erate struct {
+}
+
 //CryptoCode CryptoCode
 type CryptoCode struct {
-	CryptoCode  string    `json:"cryptoCode"`
-	PaymentType string    `json:"paymentType"`
-	Rate        float64   `json:"rate"`
-	ExRates     []float64 `json:"exRates"`
-	Paid        string    `json:"paid"`
-	Price       string    `json:"price"`
-	Due         string    `json:"due"`
-	PaymentUrls []string  `json:"paymentUrls"`
-	Address     string    `json:"address"`
-	URL         string    `json:"url"`
-	TotalDue    string    `json:"totalDue"`
-	NetworkFee  string    `json:"networkFee"`
-	TxCount     int64     `json:"txCount"`
-	CryptoPaid  string    `json:"cryptoPaid"`
-	Payments    []string  `json:"payments"`
+	CryptoCode  string             `json:"cryptoCode"`
+	PaymentType string             `json:"paymentType"`
+	Rate        float64            `json:"rate"`
+	ExRates     map[string]float64 `json:"exRates"`
+	Paid        string             `json:"paid"`
+	Price       string             `json:"price"`
+	Due         string             `json:"due"`
+	PaymentUrls map[string]string  `json:"paymentUrls"`
+	Address     string             `json:"address"`
+	URL         string             `json:"url"`
+	TotalDue    string             `json:"totalDue"`
+	NetworkFee  string             `json:"networkFee"`
+	TxCount     int64              `json:"txCount"`
+	CryptoPaid  string             `json:"cryptoPaid"`
+	Payments    []string           `json:"payments"`
 }
 
 //PayURLs PayURLs
@@ -113,36 +116,10 @@ type InvFlags struct {
 
 //InvoiceReq InvoiceReq
 type InvoiceReq struct {
-	//Guid                           string                   `json:"guid"`
-	//ID                             string                   `json:"id"`
-	//URL                            string                   `json:"url"`
-	//BtcPrice                       string                   `json:"btcPrice"`
-	//BtcDue                         string                   `json:"btcDue"`
-	//CryptoInfo                     []CryptoCode             `json:"cryptoInfo"`
-	//ExRates                        float64                  `json:"exRates"`
-	//BuyerTotalBtcAmount            string                   `json:"buyerTotalBtcAmount"`
-	//InvoiceTime                    time.Time                `json:"invoiceTime"`
-	//CurrentTime                    time.Time                `json:"currentTime"`
-	//LowFeeDetected                 bool                     `json:"lowFeeDetected"`
-	//BtcPaid                        string                   `json:"btcPaid"`
-	//Rate                           float64                  `json:"rate"`
-	//ExceptionStatus                string                   `json:"exceptionStatus"`
-	//PaymentUrls                    PayURLs                  `json:"paymentUrls"`
-	//RefundAddressRequestPending    bool                     `json:"refundAddressRequestPending"`
-	//BuyerPaidBtcMinerFee           string                   `json:"buyerPaidBtcMinerFee"`
-	//BitcoinAddress                 string                   `json:"bitcoinAddress"`
-	//Flags                          InvFlags                 `json:"flags"`
-	//PaymentSubtotals               float64                  `json:"paymentSubtotals"`
-	//PaymentTotals                  float64                  `json:"paymentTotals"`
-	// AmountPaid                     float64                  `json:"amountPaid"`
-	// MinerFees                      float64                  `json:"minerFees"`
-	// ExchangeRates                  float64                  `json:"exchangeRates"`
-	// Addresses                      string                   `json:"addresses"`
-	// PaymentCodes                   string                   `json:"paymentCodes"`
-	Currency                       string                   `json:"currency"`
-	Price                          float64                  `json:"price"`
-	OrderID                        string                   `json:"orderId"`
-	ExpirationTime                 time.Time                `json:"expirationTime"`
+	Currency string  `json:"currency"`
+	Price    float64 `json:"price"`
+	OrderID  string  `json:"orderId"`
+	//ExpirationTime                 int64                    `json:"expirationTime"`
 	ItemDesc                       string                   `json:"itemDesc"`
 	ItemCode                       string                   `json:"itemCode"`
 	PosData                        string                   `json:"posData"`
@@ -159,8 +136,7 @@ type InvoiceReq struct {
 	NotificationURL                string                   `json:"notificationURL"`
 	ExtendedNotifications          bool                     `json:"extendedNotifications"`
 	FullNotifications              bool                     `json:"fullNotifications"`
-	BuyerFields                    BuyerFields              `json:"buyerFields"`
-	//Buyer                          Buyer                    `json:"buyer"`
+	Buyer                          Buyer                    `json:"buyer"`
 }
 
 //IncoiceArgs IncoiceArgs
@@ -174,42 +150,48 @@ type IncoiceArgs struct {
 	Offset    string `json:"offset"`
 }
 
+//MinerFee MinerFee
+type MinerFee struct {
+	SatoshisPerByte float64 `json:"satoshisPerByte"`
+	TotalFee        float64 `json:"totalFee"`
+}
+
 //Invoice Invoice
 type Invoice struct {
-	GUID                        string       `json:"guid"`
-	ID                          string       `json:"id"`
-	URL                         string       `json:"url"`
-	BtcPrice                    string       `json:"btcPrice"`
-	BtcDue                      string       `json:"btcDue"`
-	CryptoInfo                  []CryptoCode `json:"cryptoInfo"`
-	ExRates                     float64      `json:"exRates"`
-	BuyerTotalBtcAmount         string       `json:"buyerTotalBtcAmount"`
-	InvoiceTime                 time.Time    `json:"invoiceTime"`
-	CurrentTime                 time.Time    `json:"currentTime"`
-	LowFeeDetected              bool         `json:"lowFeeDetected"`
-	BtcPaid                     string       `json:"btcPaid"`
-	Rate                        float64      `json:"rate"`
-	ExceptionStatus             string       `json:"exceptionStatus"`
-	PaymentUrls                 PayURLs      `json:"paymentUrls"`
-	RefundAddressRequestPending bool         `json:"refundAddressRequestPending"`
-	BuyerPaidBtcMinerFee        string       `json:"buyerPaidBtcMinerFee"`
-	BitcoinAddress              string       `json:"bitcoinAddress"`
-	Flags                       InvFlags     `json:"flags"`
-	PaymentSubtotals            float64      `json:"paymentSubtotals"`
-	PaymentTotals               float64      `json:"paymentTotals"`
-	AmountPaid                  float64      `json:"amountPaid"`
-	MinerFees                   float64      `json:"minerFees"`
-	ExchangeRates               float64      `json:"exchangeRates"`
-	Addresses                   string       `json:"addresses"`
-	PaymentCodes                string       `json:"paymentCodes"`
-	Currency                    string       `json:"currency"`
-	Price                       float64      `json:"price"`
-	OrderID                     string       `json:"orderId"`
-	ExpirationTime              time.Time    `json:"expirationTime"`
-	ItemDesc                    string       `json:"itemDesc"`
-	ItemCode                    string       `json:"itemCode"`
-	PosData                     string       `json:"posData"`
-	Status                      string       `json:"status"`
+	GUID                        string                        `json:"guid"`
+	ID                          string                        `json:"id"`
+	URL                         string                        `json:"url"`
+	BtcPrice                    string                        `json:"btcPrice"`
+	BtcDue                      string                        `json:"btcDue"`
+	CryptoInfo                  []CryptoCode                  `json:"cryptoInfo"`
+	ExRates                     map[string]float64            `json:"exRates"`
+	BuyerTotalBtcAmount         string                        `json:"buyerTotalBtcAmount"`
+	InvoiceTime                 int64                         `json:"invoiceTime"`
+	CurrentTime                 int64                         `json:"currentTime"`
+	LowFeeDetected              bool                          `json:"lowFeeDetected"`
+	BtcPaid                     string                        `json:"btcPaid"`
+	Rate                        float64                       `json:"rate"`
+	ExceptionStatus             bool                          `json:"exceptionStatus"`
+	PaymentUrls                 PayURLs                       `json:"paymentUrls"`
+	RefundAddressRequestPending bool                          `json:"refundAddressRequestPending"`
+	BuyerPaidBtcMinerFee        string                        `json:"buyerPaidBtcMinerFee"`
+	BitcoinAddress              string                        `json:"bitcoinAddress"`
+	Flags                       InvFlags                      `json:"flags"`
+	PaymentSubtotals            map[string]float64            `json:"paymentSubtotals"`
+	PaymentTotals               map[string]float64            `json:"paymentTotals"`
+	AmountPaid                  float64                       `json:"amountPaid"`
+	MinerFees                   map[string]MinerFee           `json:"minerFees"`
+	ExchangeRates               map[string]map[string]float64 `json:"exchangeRates"`
+	Addresses                   map[string]string             `json:"addresses"`
+	PaymentCodes                map[string]map[string]string  `json:"paymentCodes"`
+	Currency                    string                        `json:"currency"`
+	Price                       float64                       `json:"price"`
+	OrderID                     string                        `json:"orderId"`
+	ExpirationTime              int64                         `json:"expirationTime"`
+	ItemDesc                    string                        `json:"itemDesc"`
+	ItemCode                    string                        `json:"itemCode"`
+	PosData                     string                        `json:"posData"`
+	Status                      string                        `json:"status"`
 	//RedirectURL                    string                   `json:"redirectURL"`
 	//TransactionSpeed               string                   `json:"transactionSpeed"`
 	//Physical                       bool                     `json:"physical"`
@@ -224,4 +206,9 @@ type Invoice struct {
 	FullNotifications     bool    `json:"fullNotifications"`
 	//BuyerFields                    BuyerFields              `json:"buyerFields"`
 	Buyer Buyer `json:"buyer"`
+}
+
+//InvoiceResponse InvoiceResponse
+type InvoiceResponse struct {
+	Data Invoice `json:"data"`
 }

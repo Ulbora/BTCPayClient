@@ -51,7 +51,7 @@ type Client interface {
 	PairClient(code string) *TokenResponse
 	GetPairingCodeRequest(code string) string
 	GetRates(currencyPairs []string, storeID string) *RateResponse
-	//CreateInvoice(inv *InvoiceReq) *Invoice
+	CreateInvoice(inv *InvoiceReq) *InvoiceResponse
 	//GetInvoice(invoiceId string, token string) *Invoice
 	//GetInvoices(args IncoiceArgs, token string) *[]Invoice
 }
