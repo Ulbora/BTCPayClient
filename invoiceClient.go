@@ -66,13 +66,13 @@ func (a *BTCPayClient) GetInvoice(invoiceID string) *InvoiceResponse {
 	var url = a.host + "/invoices/" + invoiceID + "?token=" + a.tokens.Token
 	a.log.Debug("url: ", url)
 	var headers Headers
-	urlb := []byte(url)
-	signVal, _ := a.crypto.Sign(urlb, a.kp)
+	urlbi := []byte(url)
+	signVal, _ := a.crypto.Sign(urlbi, a.kp)
 	headers.Set("x-identity", a.crypto.GetPublicKey(a.kp))
 	headers.Set("x-signature", hex.EncodeToString(signVal))
 	fmt.Println("headers: ", headers)
-	req := a.buildRequest(http.MethodGet, url, headers, nil)
-	suc, stat := a.proxy.Do(req, &rtn) //--------------------
+	reqi := a.buildRequest(http.MethodGet, url, headers, nil)
+	suc, stat := a.proxy.Do(reqi, &rtn) //--------------------
 	// //test------------------------
 	// client := &http.Client{}
 	// resp, err := client.Do(req)
@@ -80,8 +80,8 @@ func (a *BTCPayClient) GetInvoice(invoiceID string) *InvoiceResponse {
 	// defer resp.Body.Close()
 	// stat := resp.StatusCode
 	// decoder := json.NewDecoder(resp.Body)
-	// bodyBytes, err := ioutil.ReadAll(resp.Body)
-	// if err != nil {
+	// bodyBytes, erri := ioutil.ReadAll(resp.Body)
+	// if erri != nil {
 	// 	log.Fatal(err)
 	// }
 	// bodyString := string(bodyBytes)
@@ -130,13 +130,13 @@ func (a *BTCPayClient) GetInvoices(args *InvoiceArgs) *InvoiceListResponse {
 
 	a.log.Debug("url: ", url)
 	var headers Headers
-	urlb := []byte(url)
-	signVal, _ := a.crypto.Sign(urlb, a.kp)
+	urlbis := []byte(url)
+	signVal, _ := a.crypto.Sign(urlbis, a.kp)
 	headers.Set("x-identity", a.crypto.GetPublicKey(a.kp))
 	headers.Set("x-signature", hex.EncodeToString(signVal))
 	fmt.Println("headers: ", headers)
-	req := a.buildRequest(http.MethodGet, url, headers, nil)
-	suc, stat := a.proxy.Do(req, &rtn) //--------------------
+	reqis := a.buildRequest(http.MethodGet, url, headers, nil)
+	suc, stat := a.proxy.Do(reqis, &rtn) //--------------------
 	// //test------------------------
 	// client := &http.Client{}
 	// resp, err := client.Do(req)
@@ -144,8 +144,8 @@ func (a *BTCPayClient) GetInvoices(args *InvoiceArgs) *InvoiceListResponse {
 	// defer resp.Body.Close()
 	// stat := resp.StatusCode
 	// decoder := json.NewDecoder(resp.Body)
-	// bodyBytes, err := ioutil.ReadAll(resp.Body)
-	// if err != nil {
+	// bodyBytes, erris := ioutil.ReadAll(resp.Body)
+	// if erris != nil {
 	// 	log.Fatal(err)
 	// }
 	// bodyString := string(bodyBytes)
