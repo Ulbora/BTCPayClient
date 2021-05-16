@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+
 	"net/http"
 )
 
@@ -27,7 +28,8 @@ func (a *BTCPayClient) CreateInvoice(inv *InvoiceReq) *InvoiceResponse {
 		signVal, _ := a.crypto.Sign(urlb, a.kp)
 		headers.Set("x-identity", a.crypto.GetPublicKey(a.kp))
 		headers.Set("x-signature", hex.EncodeToString(signVal))
-		fmt.Println("headers: ", headers)
+
+		a.log.Debug("headers: ", headers)
 		req := a.buildRequest(http.MethodPost, url, headers, aJSON)
 		suc, stat := a.proxy.Do(req, &rtn) //--------------------
 		// //test------------------------
