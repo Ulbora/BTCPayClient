@@ -56,4 +56,5 @@ type Client interface {
 	CreateInvoice(inv *InvoiceReq) *InvoiceResponse
 	GetInvoice(invoiceID string) *InvoiceResponse
 	GetInvoices(args *InvoiceArgs) *InvoiceListResponse
+	SetLogLevel(level int)
 }
