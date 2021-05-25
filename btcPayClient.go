@@ -30,7 +30,7 @@ type BTCPayClient struct {
 //New New
 func (a *BTCPayClient) New(host string, kp *ecdsa.PrivateKey, token string) Client {
 	var l lg.Logger
-	l.LogLevel = lg.AllLevel
+	l.LogLevel = lg.OffLevel
 	a.log = &l
 
 	var p px.GoProxy

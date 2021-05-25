@@ -1,16 +1,4 @@
 mode: set
-github.com/Ulbora/BTCPayClient/btcPayClient.go:31.84,51.2 13 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:54.54,56.2 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:59.48,61.2 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:64.47,66.2 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:68.109,73.59 4 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:79.2,80.16 2 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:86.2,86.12 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:73.59,76.3 2 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:76.8,78.3 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:80.16,81.37 1 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:81.37,84.4 2 1
-github.com/Ulbora/BTCPayClient/btcPayClient.go:90.45,92.2 1 1
 github.com/Ulbora/BTCPayClient/client.go:21.49,24.22 1 1
 github.com/Ulbora/BTCPayClient/client.go:27.2,27.24 1 1
 github.com/Ulbora/BTCPayClient/client.go:24.22,26.3 1 1
@@ -62,3 +50,15 @@ github.com/Ulbora/BTCPayClient/pairClient.go:51.66,55.2 3 1
 github.com/Ulbora/BTCPayClient/ratesClient.go:16.87,36.35 15 1
 github.com/Ulbora/BTCPayClient/ratesClient.go:40.2,41.13 2 1
 github.com/Ulbora/BTCPayClient/ratesClient.go:36.35,38.3 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:31.84,51.2 13 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:54.54,56.2 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:59.48,61.2 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:64.47,66.2 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:68.109,73.59 4 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:79.2,80.16 2 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:86.2,86.12 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:73.59,76.3 2 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:76.8,78.3 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:80.16,81.37 1 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:81.37,84.4 2 1
+github.com/Ulbora/BTCPayClient/btcPayClient.go:90.45,92.2 1 1
