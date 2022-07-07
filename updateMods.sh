@@ -1,0 +1,3 @@
+# GO111MODULE=on go get -u
+# go get -u all ./...
+go get -u 
